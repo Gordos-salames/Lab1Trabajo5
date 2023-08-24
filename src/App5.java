@@ -1,3 +1,7 @@
+
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -8,12 +12,15 @@
  * @author SCP-062
  */
 public class App5 extends javax.swing.JFrame {
+    
+    private DefaultTableModel modelo = new DefaultTableModel();
 
     /**
      * Creates new form App5
      */
     public App5() {
         initComponents();
+        armarCabecera();
     }
 
     /**
@@ -37,6 +44,7 @@ public class App5 extends javax.swing.JFrame {
         jtcategoria = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 153));
@@ -63,14 +71,13 @@ public class App5 extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jtbtabla);
 
-        jtnombre.setText("jTextField2");
-
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Categoría");
 
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Nombre");
 
-        jtprecio.setText("jTextField3");
-
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Precio");
 
         jtcategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alimento", "Limpieza", "Electrodomestico", "Ropa", " ", " " }));
@@ -99,7 +106,7 @@ public class App5 extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 26, Short.MAX_VALUE))
+                .addGap(0, 14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +125,7 @@ public class App5 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jtprecio, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -129,7 +136,25 @@ public class App5 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        String categoria = (String) jtcategoria.getSelectedItem();
+        String nombre = jtnombre.getText();
+        double precio = 0;
+        try{
+            precio = Double.parseDouble(jtprecio.getText());
+        }catch(NumberFormatException nf){
+            JOptionPane.showMessageDialog(this, "Error, ingrese un número valido");
+            return;
+        }
+        if((!nombre.equals("")) && (precio >= 0)){
+        Object arr[] = {nombre,categoria,precio};
+        modelo.addRow(arr);
+        }else{
+            JOptionPane.showMessageDialog(this, "Error, debe ingresar datos");
+        }
+        jtnombre.setText("");
+        jtprecio.setText("");
+        
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -179,4 +204,12 @@ public class App5 extends javax.swing.JFrame {
     private javax.swing.JTextField jtnombre;
     private javax.swing.JTextField jtprecio;
     // End of variables declaration//GEN-END:variables
+    
+    private void armarCabecera(){
+        modelo.addColumn("Nombre");
+        modelo.addColumn("categoría");
+        modelo.addColumn("Precio: ");
+        jtbtabla.setModel(modelo);
+    }
 }
+
