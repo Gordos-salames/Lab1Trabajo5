@@ -51,6 +51,7 @@ public class App5 extends javax.swing.JFrame {
             }
         });
 
+        jtbtabla.setBackground(new java.awt.Color(204, 255, 204));
         jtbtabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -59,12 +60,12 @@ public class App5 extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3"
+                "Categoría", "Nombre", "Precio"
             }
         ));
         jScrollPane1.setViewportView(jtbtabla);
 
-        jtnombre.setBackground(new java.awt.Color(102, 0, 0));
+        jtnombre.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Categoría");
@@ -77,7 +78,8 @@ public class App5 extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Precio");
 
-        jtcategoria.setBackground(new java.awt.Color(0, 102, 51));
+        jtcategoria.setBackground(new java.awt.Color(153, 255, 153));
+        jtcategoria.setForeground(new java.awt.Color(0, 0, 0));
         jtcategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alimento", "Limpieza", "Electrodomestico", "Ropa", " ", " " }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
